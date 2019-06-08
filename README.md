@@ -12,5 +12,7 @@ Then
 
 Here the steps are providedd
 1.Open terminal (ctrl + Alt + T)
+
 2.`sudo chmod +x  my-shell-script`
+
 3.`./my-shell-script`
