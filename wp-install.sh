@@ -4,18 +4,6 @@
 
 #!!! It will automatically make the database
 
-# DB_USER=root
-# DB_PASS=root
-# project_name=wp-test
-
-
-# db_host=localhost
-# wp_user=admin
-# wp_pass=123456
-# db_prefix=wp_
-# #email is required for the wordpress side
-# wp_email=ronak@creolestudios.com
-
 #start:
 
 #echo -n "press enter if you Want the default value further:"
