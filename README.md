@@ -1,4 +1,4 @@
-# WordPress Default Installer Script :smile:
+# WordPress Default Installer Script with WP-CLI :smile:
 This repo for the shell script for wordpress default set up
 
  
