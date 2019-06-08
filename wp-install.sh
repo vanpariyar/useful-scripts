@@ -87,10 +87,16 @@ wp core install --url=$project_host/$project_name --title=$project_name --admin_
 #wp plugin install contact-form-7 --activate
 #wp plugin install 
 
-
 sudo chmod 755 -R wp-content
 cd wp-content
 sudo chmod 755 -R uploads	
+
+
+#test wordpress with some data
+# wp user generate --count=5 --role=editor
+# wp user generate --count=10 --role=author
+# wp term generate --count=12
+# wp post generate --count=50
 
 nautilus $project_path
 

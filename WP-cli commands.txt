@@ -1,0 +1,200 @@
+https://www.codeinwp.com/blog/wp-cli/
+https://www.codeinwp.com/blog/secure-your-wordpress-website/
+
+1. Have a quick look into the wp-config.php file
+(Note. This is a new addition to WP-CLI 1.2.0. Make sure you’re running the most recent version of WP-CLI to get it.)
+
+WP-CLI has always been quite efficient when it comes to letting you configure a fresh site. For instance, the handy wp config create command lets you create a fresh config file and put all the important details in it. Usually much quicker than doing this the traditional way, especially if you’re a fast typer.
+
+But WP-CLI 1.2.0 takes it a step further.
+
+There are two new subcommands for the main wp config command.
+
+=====  wp config create
+
+wp config get
+
+wp config path
+
+
+
+show db with table sizes 
+wp db size --tables
+
+
+2. Run core updates
+Usually, running an update involves logging into your admin and clicking through a couple of pages to update your site.
+
+With WP-CLI, updates are easily run with one simple command:
+
+wp core update
+
+wp core update --version=4.7.1
+
+
+3. Update, disable, and delete pesky plugins
+Usually, if a plugin breaks your site completely (or even just disables your admin), you have to log in via FTP and change its folder name in order to deactivate it. On the other hand, there is a simple WP-CLI command to deactivate plugins:
+
+wp plugin deactivate plugin-name-example
+
+If a plugin is giving you serious trouble and needs to be deleted, you can do so using the delete command instead:
+
+wp plugin delete plugin-name-example
+
+Also, you can skip manual updates for plugins by running a command similar to the WordPress core update feature:
+
+wp plugin update --all
+
+check the status of the plugins currently on your site. For that, use:
+wp plugin status
+
+4. Reset user passwords
+Imagine that you’ve lost your WordPress admin password. You’ve tried the reset password link, but for some reason the reset email won’t show up in your inbox. Are you locked out of your WordPress site forever? Not with WP-CLI.
+
+WP-CLI offers speedy user management, including the ability to reset passwords using the following line:
+
+With commands as simple as this, there’s no need to panic or worry about complicated workarounds to get access to your site again. Gone are the days of manually hashing your password and inserting it directly into the database…
+
+Moreover, since this is all done over a secure connection with your server, you’re also not sacrificing the security of your website by using this method.
+
+wp user update adminuser@example.com --user_pass=new-password-example
+
+
+5. Backup and manipulate the database
+WordPress doesn’t make it easy to directly interact with your database. This can be frustrating when you want to accomplish seemingly simple tasks, like running an update without a plugin or searching for and replacing a set phrase.
+
+You can use WP-CLI to make these jobs easier. It allows you to optimize and repair databases with simple commands like:
+
+
+wp db optimize
+wp db repair
+If you are writing a custom query, you can quickly test it out by using the query command:
+
+wp db query "SELECT * FROM wp_options"
+However, before you get too trigger-happy with the database, it’s important that you know how to create backups. The command for creating SQL backups in WP-CLI is as follows:
+
+wp db export
+This will create an SQL file* you can use to restore the database of your site if something goes wrong. It even works well when used in combination with backup plugins.
+
+* The name the file’s going to be given is rather random. To assign your own, use this:
+wp db export yourname.sql
+
+6. Clean up post revisions
+Post revisions are something we have a bit hard time with here at CodeinWP. Some of our most frequently updated posts have 200+ revisions, which makes managing things really tough.
+
+ 
+Mainly, when you go to the standard revision comparison page in WordPress (next screenshot), you get that bar at the top. Through it, you can choose the two revisions that you want to compare. This is fine if you have sub-20 revisions on a post. But with more than 100, the bar becomes un-clickable – I mean, you can’t easily point to the exact revision that you want – requires pixel perfection in your clicks. The bar is just too dense.
+WordPress revisions bar
+ 
+To battle this in some way, you can set a limit on the number of revisions allowed per post in your wp-config.php file (eg. define('WP_POST_REVISIONS', 40);). But this only limits the revisions on your future actions. Removing all the existing revisions that are above that mark is on you. This can be done in a couple of ways. One of them is via a plugin. The other is via WP-CLI.
+And the WP-CLI way is just much quicker. To get started, you need to install an additional WP-CLI package called wp-revisions-cli.
+
+This can be done via a simple command:
+
+wp package install trepmal/wp-revisions-cli
+After that, you get to use a handful of cool new WP-CLI commands:
+
+wp revisions clean
+removes old revisions on all posts. It defaults to the value of WP_POST_REVISIONS – keeping only the most recent revisions.
+ 
+ 
+Alternatively, if you want to be more hands-on with your revisions, you can, for instance, control the revisions for a specific post:
+wp revisions list --post_id=ID
+gives you a list of all the revisions for a given post.
+WP-CLI revisions
+ 
+Or:
+wp revisions clean --post_id=ID --before-date=DATE
+removes revisions on a given post published on or before some date (YYYY-MM-DD).
+Overall, a really cool feature, and particularly if you tend to update your existing posts quite often – which naturally produces a lot of revisions. I’m really excited to see what new features the wp-revisions-cli package will bring in the future.
+
+
+7. Create a child theme, like, now(!)
+Granted, creating child themes is not supper difficult. But you still have to first go to the official reference at Codex – just to make sure that some fine details haven’t been changed, then create a functions.php and CSS, put that in a new directory, and so on and so forth.
+
+WP-CLI gives you a quicker method. All you do is this:
+
+wp scaffold child-theme NEW-CHILD-SLUG --parent_theme=SLUG --theme_name=TITLE
+… and that’s all. What you get as a result is an operational, blank child theme based on a set parent theme.
+
+WP-CLI child theme
+There are some additional parameters available, too. For instance, you can do this:
+
+wp scaffold child-theme SLUG --parent_theme=SLUG --theme_name=TITLE --author=FULL-NAME --author_uri=URI --theme_uri=URI --activate --force
+--force overwrites files that already exist.
+Go to top
+8. Create loads of dummy content for testing
+When working on any sort of a WordPress project, dummy content is something you probably need relatively often.
+
+Maybe you’re working on some new plugin that processes a number of posts and then does something to them.
+Maybe you want to see if your pagination is working just fine.
+Maybe you want to put more stuff in your menus, for testing purposes.
+And so on…
+Normally, what I used to do in such cases was press Ctrl+F and start looking for that pesky XML dump of example WordPress content that I have sitting around somewhere. But this takes time, and I seem to be misplacing the file every time somehow.
+
+Anyway, as you’d imagine, WP-CLI has some options for that too:
+
+wp post generate --count=10
+creates 10 empty posts; but you don’t need to stop at just 10 – WP-CLI promises that 1000 is also a perfectly executable value.
+Or, to make things more factual:
+
+curl http://loripsum.net/api/4 | wp post generate --post_content --count=10
+creates 10 posts, each having 4 paragraphs of dummy lorem ipsum text imported from loripsum.net.
+Go to top
+9. Blank your site
+There’s one really cool WP-CLI command that lets you empty your site of all its contents (including posts, comments, terms, and meta), while leaving the site configuration and users intact. It’s this:
+
+wp site empty
+If you tend to use the same dev WordPress setup for most of your tests/experiments/etc. then you know right away how much time this thing will save you.
+
+While you can achieve the same effect by going through your content manually, or using phpMyAdmin, this WP-CLI command is in a league of its own when it comes to speed.
+
+You can also do:
+
+wp site empty --uploads
+gets rid of everything in your “uploads” folder as well.
+Go to top
+10. Remove all spam comments
+First of all, WP-CLI gives you a lot of possibilities in regards to managing comments. For instance, you can:
+
+create new comments with wp comment create
+update comments with wp comment update
+approve comments with wp comment approve
+and a lot more…
+But perhaps the most interesting thing you can do here is erase all the spam comments from your site at once. This is particularly helpful if you ever wake up to thousands of new spam comments in your database.
+
+The command is this:
+
+wp comment delete $(wp comment list --status=spam --format=ids)
+This is a neat hack. The main wp comment delete command expects an argument – the ID(s) of the comment(s) that should be deleted. So to provide the ID(s), we’re calling another command – wp comment list – which displays a list of all the comments that have been marked as spam. Quite cool, isn’t it?
+
+11. Tame wp-cron
+The standard wp-cron mechanism hasn’t been the most reliable thing. More or less, when you schedule a post in WordPress, you can never be 100% sure that it will indeed go live (at least my experience).
+
+WP-CLI can help you tame cron just a bit with the use of this command:
+
+wp cron event run --due-now
+triggers all cron events due right now.
+WP-CLI wp-cron
+
+Bonus: Two “meta” tricks for WP-CLI
+As awesome as WP-CLI is, it’s still a text interface, which means it’s difficult to always remember how to use this or that command.
+
+There are two things you can do to help yourself out:
+
+First, the standard help command:
+
+wp help COMMAND
+displays help on any command in WP-CLI.
+ 
+Next, there’s the --prompt argument that works with most (or even all?) WP-CLI commands. For example, if I attempt to generate some new content like this:
+wp post generate --prompt
+WP-CLI will list all the arguments that are available for the generate command, and let me fill in the blanks (I can press Enter on things that are optional – inside [] brackets). Like so:
+
+WP-CLI prompt argument
+ 
+Conclusion
+WP-CLI takes many tasks often considered cumbersome and makes them so simple they are almost fun to deal with. Rather than spending hours overcoming obstacles that are preventing you from solving the real issues, you can use WP-CLI to quickly gain access to almost anything you need within your WordPress site.
+
+There are many situations where WP-CLI can come in handy, and the ones presented above are just the beginning, and give us only a glimpse of how useful WP-CLI can be once we truly master its capabilities.
+
