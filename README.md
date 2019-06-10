@@ -30,7 +30,7 @@ field | answers
 Time to install setup | 50 second(If internet is fast)
 Easy to set up on linux  ? | super easy
 Speed of the script | like :leopard: (Leopard)
-How much time it will save ? | approx 1 hour
+How much time it will save ? | 10 To 15 minuts
 Usages | easy to use
 Who can use | It can be used by beggnner to professionals
 Is it easy to install  for Interview test ? | Yes
