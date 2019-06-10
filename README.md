@@ -13,24 +13,25 @@ Or Clone this Repo :octocat:.
 
 2.change as per your requirment.
 
-Then,Here the steps are provided.
+Here the steps are provided.
 
-**Now all Done**
+**Steps to the run the script**
 
-1.Open terminal (ctrl + Alt + T)
+1.Open terminal (`ctrl + Alt + T`)
 
 2.`sudo chmod +x  wp-install.sh`
 
 3.`./wp-install.sh`
 
-**These are some benefits for this script**
+**These are some benefits of our script**
 
 field | answers
 ------|--------
 Time to install setup | 50 second(If internet is fast)
-Easy to set up on linux | super easy
-speed | like :leopard: (Leopard)
-How much time it save| approx 1 hour
-Use case senario | easy to use
+Easy to set up on linux  ? | super easy
+Speed of the script | like :leopard: (Leopard)
+How much time it will save ? | approx 1 hour
+Usages | easy to use
 Who can use | It can be used by beggnner to professionals
-Is it easy to install for Interview test ? | Yes
+Is it easy to install  for Interview test ? | Yes
+
