@@ -11,7 +11,7 @@ Or Clone this Repo :octocat:.
 
 1.first edit the file.
 
-2.change as per your requirment.
+2.change as per your requirement.
 
 Here the steps are provided.
 
