@@ -53,8 +53,8 @@ project_path=/var/www/html/$project_name
 
 #this code for checking the project directory exsist or not
 if [ -d $project_path ]; then 
-	project_path+=-wp
-	echo -n "! you have already that project Folder But, don,t worry we have ceated folder name $project_path"
+	echo -n "! you have already that project folder name $project_path"
+	exit 1
 fi
 
 #this will create the 
