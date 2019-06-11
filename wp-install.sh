@@ -85,6 +85,7 @@ wp core install --url=$project_host/$project_name --title=$project_name --admin_
 
 #wp plugin search "contact form"
 #wp plugin install contact-form-7 --activate
+#wp plugin install advanced-custom-fields
 #wp plugin install 
 
 sudo chmod 755 -R wp-content
