@@ -90,7 +90,7 @@ wp core install --url=$project_host/$project_name --title=$project_name --admin_
 
 sudo chmod 755 -R wp-content
 cd wp-content
-sudo chmod 755 -R uploads	
+sudo chmod 777 -R uploads	
 
 
 #test wordpress with some data
