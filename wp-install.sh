@@ -88,7 +88,9 @@ wp core install --url=$project_host/$project_name --title=$project_name --admin_
 #wp plugin install advanced-custom-fields
 #wp plugin install 
 
-sudo chmod 755 -R wp-content
+if [ ! -d $project_path/wp-content/uploads ]; then 
+   mkdir uploads	
+fi
 cd wp-content
 sudo chmod 777 -R uploads	
 
