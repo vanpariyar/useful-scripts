@@ -1,7 +1,7 @@
-# WordPress Default Installer Script with WP-CLI :smile:
-This repo for the shell script for wordpress default set up
+# WordPress Installer Script with WP-CLI :smile:
+This repo for the shell script for wordpress setupt.
 
- 
+
 
 :octocat:https://raw.githubusercontent.com/vanpariyar/my-shell-script/master/wp-install.sh (open this on new tab and ctrl + s to save)
 
