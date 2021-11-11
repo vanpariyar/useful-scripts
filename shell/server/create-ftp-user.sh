@@ -1,4 +1,7 @@
+# Follow :-> https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-for-a-user-s-directory-on-ubuntu-18-04
+
 #!/bin/bash
+
 
 # 1. Create a user Be careful here because you are creating credentials for your FTP account. Use something appropriate :)
 
